@@ -37,12 +37,14 @@ app.post("/", (req, res) => {
 
 app.put("/:id", (req, res) => {
     const id = parseInt(req.params.id);
-    const userIndex = users.findIndex((user) => user.id === id);
+    // trouve son index, verifier si le userIndex est positive
 
+    const userIndex = users.findIndex((user) => user.id === id);
+    // utilisateur non trouvé
     if (userIndex < 0) {
         return res.status(404).json({ msg: "utilisateur non trouvé" });
     }
-
+// si el est trouvé, nous vérifions quelles valeurs ont été envoyées
     const { firstName, lastName } = req.body;
 
     if (firstName) users[userIndex].firstName = firstName;
@@ -56,8 +58,9 @@ app.put("/:id", (req, res) => {
 
 app.delete("/:id", (req, res) => {
     const id = parseInt(req.params.id);
+    // trouver son index, verifier si le userIndex est positive
     const userIndex = users.findIndex((user) => user.id === id);
-
+	// utilisateur non trouvé
     if (userIndex < 0) {
         return res.status(404).json({ msg: "utilisateur non trouvé" });
     }
@@ -71,8 +74,9 @@ app.delete("/:id", (req, res) => {
 
 app.get("/:id", (req, res) => {
     const id = parseInt(req.params.id);
+    // trouver son index, verifier si le userIndex est positive
     const userIndex = users.findIndex((user) => user.id === id);
-
+	// utilisateur non trouvé
     if (userIndex < 0) {
         return res.status(404).json({ msg: "utilisateur non trouvé" });
     }
